@@ -63,3 +63,6 @@ Exemplo: 1 XNOR 1 = 1; 1 XNOR 0 = 0.<br><br>
 <hr>
 
 ## Codificadores e Decodificadores.
+
+Um codificador (ou encoder) é um circuito digital combinacional que converte uma entrada ativa em um código binário correspondente. Ele possui várias linhas de entrada e algumas linhas de saída, e sua função principal é traduzir uma entrada específica em uma representação binária menor.
+
