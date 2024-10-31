@@ -97,14 +97,12 @@ Para podermos fazer essa converção entendemos que precisamos fazer combinaçõ
 
 ![](assets/Animacao-Multiplexacao-display-7-segmentos.gif)
 
-- **primeiro** jogamos nossos elementos (bits) na tabela verdade e obtemos os seguinte resultado.
-<br>
+- **primeiro** jogamos nossos elementos (bits) na tabela verdade e obtemos os seguinte resultado.<br>
 <br>
 ![](assets/Captura%20de%20tela%202024-10-31%20142722.png)
 <br>
-<br>
-- **segundo** fazemos a conversão para a soma dos produtos minimizada obtendo o seguinte resultado:
-<br>
+
+- **segundo** fazemos a conversão para a soma dos produtos minimizada obtendo o seguinte resultado:<br>
 > terminal a = (~B*~D)+(A*~B*~C)+(~A*C)+(~A*B*D)+(B*C)<br>
 > terminal b = (A*~C*D)+(~B*~D)+(~A*~C*~D)+(~A*C*D)+(~A*~B)<br>
 > terminal c = (~C*D)+(~A*B)+(A*~B)+(~A*~C)+(~A*D)<br>
@@ -115,6 +113,6 @@ Para podermos fazer essa converção entendemos que precisamos fazer combinaçõ
 
 <br>
 
-Apos finalizarmos o circuito obtemos o seguinte resultado.
-![](assets/Captura%20de%20tela%202024-10-31%20142606.png)<br>
+Apos finalizarmos o circuito obtemos o seguinte resultado.<br>
+![](assets/Captura%20de%20tela%202024-10-31%20142606.png).<br>
  
