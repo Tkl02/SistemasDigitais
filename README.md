@@ -98,9 +98,8 @@ Para podermos fazer essa converção entendemos que precisamos fazer combinaçõ
 ![](assets/Animacao-Multiplexacao-display-7-segmentos.gif)
 
 - **primeiro** jogamos nossos elementos (bits) na tabela verdade e obtemos os seguinte resultado.<br>
-<br>
-![](assets/Captura%20de%20tela%202024-10-31%20142722.png)
-<br>
+
+![](assets/Captura%20de%20tela%202024-10-31%20142722.png).<br>
 
 - **segundo** fazemos a conversão para a soma dos produtos minimizada obtendo o seguinte resultado:<br>
 > terminal a = (~B*~D)+(A*~B*~C)+(~A*C)+(~A*B*D)+(B*C)<br>
