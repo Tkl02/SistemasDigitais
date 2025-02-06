@@ -1,117 +1,111 @@
-# Sistemas Digitais (HDL)
+# Sistemas Digitais (VHDL)
 
-Este é um trabalho para apresentar a evolução do aprendizado a respeito de sistemas digitais mais especificamente na criação de HDL ou Hard Description Lenguage.
+Este é um trabalho para apresentar a evolução do aprendizado a respeito de sistemas digitais, mais especificamente na criação do SAP-1 em VHDL. Ao decorrer da leitura, você perceberá que alguns componentes se repetirão. Não se preocupe, isso é normal, já que a base de tudo são os registradores.
 
 <hr>
 
 ## Sumario 
-- Portas Logicas.
-- Codificadores e Decodificadores.
-- Multiplexadores e Demultiplexadores
-- Flip-Flops.
-- Contadores e Registradores.
-- Conversores A/D e D/A
+- Arquitetura.
+- Flip-Flop tipo D.
+- Memory Cell.
+- Register (8 Bits).
+- Intruction Register (IR).
+- Output Register (OR).
+- Memory Address Register (MAR).
+- Memory Buffer Register (MBR).
+- Program Counter (PC).
+- Decodificador.
+- ALU.
+- Insternal and External Address Bus.
+- Complet Circuit.
 
 <hr>
 
-## portas logicas
+## Arquitetura
 
-Quando falamos sobre portas lógicas, temos os seguintes exemplos: **AND, OR, NOT, NAND, NOR, XOR e XNOR**. Cada uma possui características específicas, com diferentes usos e aplicações. A seguir, faremos um breve resumo sobre o funcionamento e as principais utilidades de cada uma.
+O SAP-1 é um modelo introdutório que representa um computador de 8 bits. Ele é comumente usado para demonstrar a estudantes o funcionamento básico dos componentes e suas interações. Esses componentes são:
 
-### Porta AND
-AND
-Retorna 1 (verdadeiro) apenas se todas as entradas forem 1.<br>
-Exemplo: 1 AND 1 = 1; 1 AND 0 = 0.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134812.png)  ![](assets/Captura%20de%20tela%202024-10-30%20144844.png)
-
-### Porta OR
-OR
-Retorna 1 se pelo menos uma das entradas for 1.<br>
-Exemplo: 1 OR 0 = 1; 0 OR 0 = 0.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134825.png)  ![](assets/Captura%20de%20tela%202024-10-30%20144910.png)
-
-### Porta NOT
-NOT
-Inverte o valor da entrada (porta unária).<br>
-Exemplo: NOT 1 = 0; NOT 0 = 1.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134926.png)  ![](assets/Captura%20de%20tela%202024-10-30%20150624.png)
-
-### Porta NAND
-NAND (NOT AND)
-É o inverso da porta AND, retornando 0 apenas se todas as entradas forem 1.<br>
-Exemplo: 1 NAND 1 = 0; 1 NAND 0 = 1.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134934.png)  ![](assets/Captura%20de%20tela%202024-10-30%20150955.png)
-
-### Porta NOR
-NOR (NOT OR)
-É o inverso da porta OR, retornando 1 apenas se todas as entradas forem 0.<br>
-Exemplo: 0 NOR 0 = 1; 1 NOR 0 = 0.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134940.png)  ![](assets/Captura%20de%20tela%202024-10-30%20151458.png)
-
-### Porta XOR
-XOR (Exclusive OR)
-Retorna 1 se apenas uma das entradas for 1 (diferentes).<br>
-Exemplo: 1 XOR 0 = 1; 1 XOR 1 = 0.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134950.png)  ![](assets/Captura%20de%20tela%202024-10-30%20144939.png)
-
-### Porta XNOR
-XNOR (Exclusive NOR)
-É o inverso da porta XOR, retornando 1 se as entradas forem iguais.<br>
-Exemplo: 1 XNOR 1 = 1; 1 XNOR 0 = 0.<br><br>
-![](assets/Captura%20de%20tela%202024-10-30%20134958.png)  ![](assets/Captura%20de%20tela%202024-10-30%20151740.png)
+![](assets/arctetura%20sap.png)
 
 <hr>
 
-## Codificadores e Decodificadores.
+### Flip-Flop tipo D
+O flip-flop tipo D é um componente de extrema importância para a construção de um computador, sendo responsável por armazenar dentro dele o dado de 1 bit.
 
-Um codificador (ou encoder) é um circuito digital combinacional que converte uma entrada ativa em um código binário correspondente. Ele possui várias linhas de entrada e algumas linhas de saída, e sua função principal é traduzir uma entrada específica em uma representação binária menor.
+![](assets/flip%20flop%20D.png)
 
-### encoder
+<hr>
 
-Como demonstração iremos fazer um encoder do codigo grey para a base binaria.
+### Memory Cell
+A memory cell, ou célula de memória, é um componente que constitui nossa memória. Ela faz a "interação" do nosso objetivo, armazenando-o em nossos registradores.
 
-Comecemos criando uma tabela para podermos analisar todos os dados e consequentemente tambem conferi-los.<br>
-<br>
-![](assets/Captura%20de%20tela%202024-10-31%20175158.png)
-<br>
+![](assets/celula%20memoria.png)
 
-o proximo passo sera criar uma tabela da verdade ou mapa de karnaugh para conseguir obter o produto da soma ou a soma do produto onde os elementos binario serao A, B, C, D e os elementos do grey serão S1, S2, S3, S4.<br><br>
-![](assets/Captura%20de%20tela%202024-10-31%20180151.png)
-<br>
+<hr>
 
-Agoro fazermos o produto da soma e simpleficamos a função do circuito obtendo o seguinte resultado:
+### Register 8 Bits
+A função de um registrador é armazenar um certo dado temporariamente até o término da execução de uma instrução.
 
-> A = (S1*S4)+(S1*S3)+(S1*S2)<br>
-> B = (S1*~S3*~S4)+(~S1*S2*S4)+(~S1*S2*S3)+(S1*~S2)<br>
-> C = (~S2*S3*S4)+(S2*~S4)+(S2*~S3)+(~S1*~S2*S3)<br>
-> D = (~S1*~S2*S4)+(S3*S4)+(S2*S3)<br>
+![](assets/registrador%208%20bits.png)
 
-no final obtemos o seguinte circuito.
-![](assets/Captura%20de%20tela%202024-10-31%20182135.png)<br>
+<hr>
 
-### decoder
+### Intruction Register (IR)
+Este registrador armazena a instrução atual que está sendo executada. Ele recebe a instrução da memória e a decodifica para que a unidade de controle possa executá-la.
 
-Para exemplificar vamos fazer um decoder de um numero binario para um hexdecimal em um display de 7 segmentos.
+![](assets/registrador%208%20bits.png)
 
-Para podermos fazer essa converção entendemos que precisamos fazer combinações de 4 bits de 0s e 1s que resultara na apresentação do numero no nosso display.
+<hr>
 
-![](assets/Animacao-Multiplexacao-display-7-segmentos.gif)
+### Output Register (OR)
+Este registrador armazena os dados que serão enviados para um dispositivo de saída, como um display.
 
-- **primeiro** jogamos nossos elementos (bits) na tabela verdade e obtemos os seguinte resultado.<br>
+![](assets/registrador%208%20bits.png)
 
-![](assets/Captura%20de%20tela%202024-10-31%20142722.png).<br>
+<hr>
 
-- **segundo** fazemos a conversão para a soma dos produtos minimizada obtendo o seguinte resultado:<br>
-> terminal a = (~B*~D)+(A*~B*~C)+(~A*C)+(~A*B*D)+(B*C)<br>
-> terminal b = (A*~C*D)+(~B*~D)+(~A*~C*~D)+(~A*C*D)+(~A*~B)<br>
-> terminal c = (~C*D)+(~A*B)+(A*~B)+(~A*~C)+(~A*D)<br>
-> terminal d = (B*~C*D)+(~B*C*D)+(B*C*~D)+(A*~C)+(~A*~B*~D)<br>
-> terminal e = (~B*~D)+(C*~D)+(A*C)+(A*B)<br>
-> terminal f = (~A*B*~C)+(A*~B)+(A*C)+(~A*~C*~D)+(~A*B*~D)<br>
-> terminal g = (B*~C)+(~B*C)+(A)+(B*~D)<br>
+### Memory Address Register (MAR)
+O MAR armazena o endereço de memória que está sendo acessado para leitura ou escrita, normalmente sendo de 4 bits.
 
-<br>
+![](assets/memoria%20endereço.png)
 
-Apos finalizarmos o circuito obtemos o seguinte resultado.<br>
-![](assets/Captura%20de%20tela%202024-10-31%20142606.png).<br>
- 
+<hr>
+
+### Memory Buffer Register (MBR)
+O MBR armazena temporariamente os dados que estão sendo transferidos para ou da memória.
+
+![](assets/registrador%208%20bits.png)
+
+### Program Counter (PC)
+O PC é um registrador que armazena o endereço da próxima instrução a ser executada. Ele é incrementado após cada instrução para apontar para a próxima instrução na memória.
+
+![](assets/contador%20de%20programa.png)
+
+<hr>
+
+### ALU
+A ALU realiza operações aritméticas e lógicas, como adição, subtração, AND, OR, etc.
+
+![](assets/ALU.png)
+
+<hr>
+
+### Barramento Interno e Externo
+Os barramentos são os fios azuis e verdes presentes no projeto, podendo ser de 4 bits (4 fios azuis) ou de 8 bits (8 fios azuis). Os barramentos de 4 bits são responsáveis por gerenciar o acesso aos locais na memória, enquanto os barramentos de 8 bits transmitem os dados que vão para a memória ou para os registradores.
+![](assets/circuito%20completo.png)
+
+<hr>
+
+### Decodificador
+Os decodificadores são circuitos digitais essenciais que convertem informações codificadas em um formato de entrada em um conjunto de sinais de saída.
+
+![](assets/decodificador.png)
+
+<hr>
+
+### Circuito Completo
+Aqui temos o exemplo já do projeto finalizado e com a integração de todos os componentes citados anteriormente. Busquei uma forma de melhorar a visibilidade dos dados e implementei decodificadores para transformarem os números binários presentes em cada componente para números decimais.
+
+![](assets/circuito%20completo.png)
+
+<hr>
